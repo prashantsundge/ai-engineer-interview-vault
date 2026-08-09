@@ -381,4 +381,4 @@ ffmpeg                   # System dependency for audio/video processing
 
 ---
 
-*Document maintained by: Pravin Kumar Sundge | CONNX 2026 | June 2026*
+*Document maintained by: PrashantKumar Sundge | June 2026*
