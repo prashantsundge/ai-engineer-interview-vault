@@ -309,4 +309,4 @@ Start with 0.5 and observe. Different content types (prose vs spreadsheet vs OCR
 
 ---
 
-*Document maintained by: Prashant Kumar Sundge | CONNX 2026 | June 2026*
+*Document maintained by: PrashantKumar Sundge | June 2026*
