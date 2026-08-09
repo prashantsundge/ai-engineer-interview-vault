@@ -393,7 +393,5 @@ python scripts/Checkqdrant.py
 
 ## Author
 
-**Pravin Kumar Sundge**  
-Senior Technical Lead | Informatica MDM | IDMC | Enterprise Data Management  
-CONNX 2026 — SharePoint AI Chatbot Project  
+**Prashant Sundge**  
 *Built June 2026*
