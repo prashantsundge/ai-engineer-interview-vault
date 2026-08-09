@@ -177,3 +177,8 @@ npm audit fix
 **Q4:** How do you identify and handle a port conflict on a Linux/Unix server if FastAPI refuses to start?
 
 **Answer:** I check what process is holding the port using `lsof -i :8000`. Once I find the Process ID (PID), I can investigate what it is. If it's a rogue or zombie process, I safely terminate it using `kill -9 <PID>` to free up the port for Uvicorn.
+
+
+
+
+
