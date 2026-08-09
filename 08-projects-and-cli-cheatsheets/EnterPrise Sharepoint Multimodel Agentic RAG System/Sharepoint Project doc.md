@@ -57,6 +57,7 @@ The system architecture is strictly segregated into three specialized processing
 |                                   | - BM25 Sparse Index    |                                            |
 |                                   +------------------------+                                            |
 +---------------------------------------------------------------------------------------------------------+
+```
 
 ## Zone 1: Data Ingestion & Cognitive Storage
 
