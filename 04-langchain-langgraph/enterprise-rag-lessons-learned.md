@@ -30,8 +30,8 @@ The most persistent and serious issue in the project was credentials from operat
 
 Operational runbooks store credentials in organisation-specific formats that no standard sanitizer library covers. The Nutreco runbook used a bullet table format:
 
-* For AZ-Prod-SBC-Act (UK): L3tm3l0g!n2@s!ms
-* For Audio Code SBC: NuTr3c0$
+* For AZ-Prod-SBCIN-Act : P@$$w0rd
+* For Audio Code SBCIN: NuTr3c0$
 
 **Password: [REDACTED] C@$Hm0n3y** ← old sanitizer inserted label but left value
 
@@ -320,6 +320,6 @@ The sanitizer was originally applied only to the LLM output. When it missed a pa
 **Tell me about a security decision you made**
 
 - **SITUATION:** Credentials appearing in chatbot answers despite sanitizer being deployed. 
-- **TASK:** Runbook format 'For AZ-Prod-SBC-Act (UK): L3tm3l0g!n2@s!ms' — no standard sanitizer covers this. 
+- **TASK:** Runbook format 'For AZ-Prod-SBCIN-Act (UK): L3tm3l0g!n2@s!ms' — no standard sanitizer covers this. 
 - **ACTION:** Added a custom heuristic pattern (must contain letter + special char), moved sanitization to BEFORE the LLM call so it never sees credentials. 
 - **RESULT:** 13/13 test cases pass including all false positive guards. Zero credential exposure since deployment.
