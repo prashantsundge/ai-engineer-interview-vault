@@ -219,7 +219,7 @@ TESSERACT_PATH=C:\Program Files\Tesseract-OCR\tesseract.exe
 ### Backend
 
 ```bash
-cd D:\CONNX 2026\SHAREPOINT_CHATBOT
+cd D:\ABC 2026\SHAREPOINT_CHATBOT
 
 # Create virtual environment
 python -m venv venv
@@ -254,7 +254,7 @@ npm start
 
 ```bash
 # Run SharePoint ingestion (delta sync)
-cd D:\CONNX 2026\SHAREPOINT_CHATBOT
+cd D:\ABC 2026\SHAREPOINT_CHATBOT
 python scripts/ingest.py
 
 # Start Celery worker (in separate terminal)
