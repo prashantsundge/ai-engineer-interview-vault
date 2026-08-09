@@ -6,7 +6,7 @@ Production Engineering | Security | Pipeline Optimisation | RAG Architecture
 
 ## 1. Executive Summary
 
-This document records the complete set of engineering lessons learned during the design, development, and hardening of the CONNX Enterprise SharePoint Multimodal Agentic RAG System — a production-grade AI knowledge assistant built on React 19, FastAPI, LangGraph, Qdrant, GPT-4o-mini, and deployed on ESXi infrastructure.
+This document records the complete set of engineering lessons learned during the design, development, and hardening of the ABC Enterprise SharePoint Multimodal Agentic RAG System — a production-grade AI knowledge assistant built on React 19, FastAPI, LangGraph, Qdrant, GPT-4o-mini, and deployed on ESXi infrastructure.
 
 The system was developed over 6 months, beginning as a prototype and evolving through multiple production incidents into a security-hardened, performant enterprise platform. This document is intended for future engineers inheriting the system, for interview preparation demonstrating production GenAI experience, and as a reference for teams building similar systems.
 
@@ -49,10 +49,10 @@ The key insight is that Layer 1 is stronger — if the context is clean, the LLM
 
 | Pattern                                         | Example                          | Status      |
 |-------------------------------------------------|----------------------------------|-------------|
-| password/secret label → value                   | Password: C@$Hm0n3y             | ✅ Pattern 2 |
+| password/secret label → value                   | Password: C@sas$Hm0n3y             | ✅ Pattern 2 |
 | Already-redacted with trailing value             | **Password: [REDACTED] value    | ✅ Pattern 1 |
-| username/userid → value                         | Username: Pro3$3rver             | ✅ Pattern 3 |
-| For <device>: <credential> (runbook format)    | * For AZ-Prod: L3tm3l0g!        | ✅ Pattern 4 |
+| username/userid → value                         | Username: Pro33rver             | ✅ Pattern 3 |
+| For <device>: <credential> (runbook format)    | * For AZ-Prod: L31tm35464l0g!        | ✅ Pattern 4 |
 | Bearer JWT tokens                               | Authorization: Bearer eyJ...     | ✅ Pattern 5 |
 | OpenAI/Anthropic API keys                       | sk-proj-xK9mP2v...               | ✅ Pattern 6 |
 | URL embedded credentials                         | redis://:password@host           | ✅ Pattern 9 |
