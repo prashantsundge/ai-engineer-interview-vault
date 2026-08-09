@@ -160,84 +160,81 @@ Think of the ReAct pattern as an ongoing conversation between an LLM and a Pytho
 │
 └────────────────────────────────────────────────────────┘
 ```
-
 The model never talks to the internet or your system directly. It simply writes its intent into the context window, a Python loop reads that intent, executes the real tool, and types the result back into the window for the model to review on its next turn.
-
 ### 3. Beginner-Friendly Code Implementation
-
 Here is a highly simplified, linear, and completely transparent implementation of a ReAct loop. There are no advanced libraries, hidden classes, or complex regex statements here—just basic Python strings and a simple loop.
 
 ```python
-import time
-# --- STEP 1: Define the Tools ---
-# These are real Python functions that fetch real data.
-def check_network_tool(line_name: str) -> str:
-    if line_name == "eth0":
-        return "14% Packet Drops detected due to overloaded tables."
-    return "Line clear."
-
-def fix_network_tool(line_name: str) -> str:
-    return f"Success: Table cache cleared for {line_name}."
-
-# --- STEP 2: Simulate the LLM's "Brain" ---
-# Because we aren't calling a live API, this function acts exactly like an LLM 
-# that reads the conversation history and decides what to type next.
-def mock_llm_brain(history: str) -> str:
-    # Turn 1: The notebook only has the user query.
-    if "OBSERVATION:" not in history:
-        return (
-            "THOUGHT: I need to find out what is wrong with the line. I will use the check network tool.\n"
-            "ACTION: check_network_tool"
-        )
-    # Turn 2: The model sees the result of the check network tool.
-    if "14% Packet Drops" in history and "fix_network_tool" not in history:
-        return (
-            "THOUGHT: The check tool shows a 14% drop rate due to overloaded tables. I should clear the cache using the fix tool.\n"
-            "ACTION: fix_network_tool"
-        )
-    # Turn 3: The model sees that the fix tool worked.
-    if "Success: Table cache cleared" in history:
-        return "FINAL ANSWER: The packet drop issue on eth0 was successfully resolved by clearing the table cache."
-    return "FINAL ANSWER: I could not figure out how to solve this."
-
-# --- STEP 3: The Orchestration Loop (The Engine) ---
-def run_react_agent():
-    # This is our shared notepad
-    notepad = "USER REQUEST: Fix the packet drops happening on network line eth0."
-    print("--- STARTING THE REACT AGENT RUNNER ---")
-    print(f"Initial Notebook State:\n{notepad}\n")
-
-    # Run a simple loop for a maximum of 3 turns to solve the problem
-    for turn in range(1, 4):
-        print(f"=== TURN {turn} ===")
-        # 1. Ask the brain what to think and do based on what is in the notebook
-        brain_response = mock_llm_brain(notepad)
-        print(f"[AI Model Wrote]:\n{brain_response}\n")
-        # 2. Add the brain's thoughts and actions directly to the notebook
-        notepad += "\n" + brain_response
-        # Check if the model has come up with the final conclusion
-        if "FINAL ANSWER:" in brain_response:
-            print("--- AGENT FINISHED SUCCESSFULLY ---")
-            break
-        # 3. Look at what action the model wants to take, and execute it using Python
-        time.sleep(1) # Small pause for readability
-        if "ACTION: check_network_tool" in brain_response:
-            # Run the actual python function
-            result = check_network_tool("eth0")
-            observation_text = f"OBSERVATION: {result}"
-            print(f"[System Executed Tool]: Spat back -> {observation_text}\n")
-            # Write the result back to the notebook so the AI can see it
-            notepad += "\n" + observation_text
-        elif "ACTION: fix_network_tool" in brain_response:
-            # Run the actual python function
-            result = fix_network_tool("eth0")
-            observation_text = f"OBSERVATION: {result}"
-            print(f"[System Executed Tool]: Spat back -> {observation_text}\n")
-            # Write the result back to the notebook so the AI can see it
-            notepad += "\n" + observation_text
-
-# Run the program
-run_react_agent()
+   import time
+   # --- STEP 1: Define the Tools ---
+   # These are real Python functions that fetch real data.
+   def check_network_tool(line_name: str) -> str:
+       if line_name == "eth0":
+           return "14% Packet Drops detected due to overloaded tables."
+       return "Line clear."
+   
+   def fix_network_tool(line_name: str) -> str:
+       return f"Success: Table cache cleared for {line_name}."
+   
+      # --- STEP 2: Simulate the LLM's "Brain" ---
+   # Because we aren't calling a live API, this function acts exactly like an LLM 
+   # that reads the conversation history and decides what to type next.
+   def mock_llm_brain(history: str) -> str:
+       # Turn 1: The notebook only has the user query.
+       if "OBSERVATION:" not in history:
+           return (
+               "THOUGHT: I need to find out what is wrong with the line. I will use the check network tool.\n"
+               "ACTION: check_network_tool"
+           )
+       # Turn 2: The model sees the result of the check network tool.
+       if "14% Packet Drops" in history and "fix_network_tool" not in history:
+           return (
+               "THOUGHT: The check tool shows a 14% drop rate due to overloaded tables. I should clear the cache using the fix tool.\n"
+               "ACTION: fix_network_tool"
+           )
+       # Turn 3: The model sees that the fix tool worked.
+       if "Success: Table cache cleared" in history:
+           return "FINAL ANSWER: The packet drop issue on eth0 was successfully resolved by clearing the table cache."
+       return "FINAL ANSWER: I could not figure out how to solve this."
+   
+      # --- STEP 3: The Orchestration Loop (The Engine) ---
+   def run_react_agent():
+       # This is our shared notepad
+       notepad = "USER REQUEST: Fix the packet drops happening on network line eth0."
+       print("--- STARTING THE REACT AGENT RUNNER ---")
+       print(f"Initial Notebook State:\n{notepad}\n")
+   
+       # Run a simple loop for a maximum of 3 turns to solve the problem
+       for turn in range(1, 4):
+           print(f"=== TURN {turn} ===")
+           # 1. Ask the brain what to think and do based on what is in the notebook
+           brain_response = mock_llm_brain(notepad)
+           print(f"[AI Model Wrote]:\n{brain_response}\n")
+           # 2. Add the brain's thoughts and actions directly to the notebook
+           notepad += "\n" + brain_response
+           # Check if the model has come up with the final conclusion
+           if "FINAL ANSWER:" in brain_response:
+               print("--- AGENT FINISHED SUCCESSFULLY ---")
+               break
+           # 3. Look at what action the model wants to take, and execute it using Python
+           time.sleep(1) # Small pause for readability
+           if "ACTION: check_network_tool" in brain_response:
+               # Run the actual python function
+               result = check_network_tool("eth0")
+               observation_text = f"OBSERVATION: {result}"
+               print(f"[System Executed Tool]: Spat back -> {observation_text}\n")
+               # Write the result back to the notebook so the AI can see it
+               notepad += "\n" + observation_text
+           elif "ACTION: fix_network_tool" in brain_response:
+               # Run the actual python function
+               result = fix_network_tool("eth0")
+               observation_text = f"OBSERVATION: {result}"
+               print(f"[System Executed Tool]: Spat back -> {observation_text}\n")
+               # Write the result back to the notebook so the AI can see it
+               notepad += "\n" + observation_text
+   
+   # Run the program
+   run_react_agent()
 ```
 
 ### 4. Why This Architecture Matters to Students
