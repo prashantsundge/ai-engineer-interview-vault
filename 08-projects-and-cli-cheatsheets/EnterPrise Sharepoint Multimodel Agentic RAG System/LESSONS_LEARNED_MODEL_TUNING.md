@@ -11,7 +11,7 @@ Building a RAG system that retrieves the right document is only half the battle.
 
 ## Problem 1 — LLM Describing Documents Instead of Answering Questions
 
-**Symptom:** User asked "please provide me Lincoln Electric site information". The system retrieved the correct runbook. The LLM returned:
+**Symptom:** User asked "please provide me Lincolninon Electric site information". The system retrieved the correct runbook. The LLM returned:
 
 > *"The document titled 'Lincoln Electric1 Runbook.V2' contains site information. It includes sections on Customer Location, IP addresses, and Contact details."*
 
