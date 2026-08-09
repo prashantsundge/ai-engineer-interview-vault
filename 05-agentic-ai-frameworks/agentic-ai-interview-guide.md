@@ -169,7 +169,6 @@ Here is a highly simplified, linear, and completely transparent implementation o
 
 ```python
 import time
-
 # --- STEP 1: Define the Tools ---
 # These are real Python functions that fetch real data.
 def check_network_tool(line_name: str) -> str:
