@@ -1,0 +1,19 @@
+# Contributing to AI Engineer Interview Vault
+
+First off, thank you for considering contributing to the AI Engineer Interview Vault! 
+
+### How Can You Contribute?
+
+1. **Fixing Typos or Formatting:** Correcting errors, improving markdown rendering, or fixing broken links.
+2. **Adding Interview Questions:** Adding new, real-world AI engineering system design or agentic architecture questions.
+3. **Code Improvements:** Enhancing existing Python implementations or adding tests.
+
+### Contribution Process
+
+1. **Fork** the Repository.
+2. **Create a Feature Branch** (`git checkout -b feature/NewInterviewQuestion`).
+3. **Commit Your Changes** (`git commit -m 'Add: Multi-agent routing question'`).
+4. **Push to the Branch** (`git push origin feature/NewInterviewQuestion`).
+5. **Open a Pull Request**.
+
+Please ensure your content is accurate, clean, and well-formatted.
