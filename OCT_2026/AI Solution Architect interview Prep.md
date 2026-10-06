@@ -1,6 +1,6 @@
 # AI Solution Architect Interview Prep — RAG & Agents
 
-Oct 6, 2026 · @Pravin
+Oct 6, 2026 ·
 
 Answers are written in your voice, anchored to KnowledgeAI (SharePoint RAG), the Autonomous NOC platform, and the Azure stack, so every answer ends with a real example. Read the two design sections first; the Q&A sections reuse their vocabulary.
 
