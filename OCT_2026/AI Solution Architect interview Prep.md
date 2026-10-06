@@ -190,3 +190,21 @@ Practise each aloud in 15 minutes: 3 minutes of questions, 7 minutes of drawing,
 - [ ] Drew ingestion or orchestration, retrieval or tools, generation, delivery
 - [ ] Covered identity and permissions, evaluation, observability, cost, failure modes
 - [ ] Closed with a real project and a number
+
+
+**Are langchain can create agents ?**
+
+Yes — and the interviewer is probably testing whether you know the *nuance*, because the answer changed over the last two years.
+
+**The short answer to give:**
+
+"Yes. LangChain has always been able to create agents, but how has changed. Originally it was `initialize_agent` / `AgentExecutor` with patterns like ReAct and OpenAI-functions agents — a loop where the LLM picks a tool, runs it, and repeats. Those legacy agent classes are now deprecated. Since LangChain 1.0 (late 2025) the standard way is `create_agent()`, which gives you a tool-calling agent in a few lines — and under the hood it's built on LangGraph. So today: LangChain for a quick, standard tool-calling agent; LangGraph directly when I need custom control flow — branching, checkpointing, human-in-the-loop nodes, multi-agent supervisors. In production I use LangGraph because I want the explicit state graph and limits."
+
+**The three things that answer signals:**
+1. You know the history (AgentExecutor → deprecated).
+2. You know the current API (`create_agent`, LangGraph underneath).
+3. You know *when to use which* — that's the architect part.
+
+**If they follow up with "then why do you need LangGraph at all?":** LangChain's `create_agent` is a pre-built loop — one agent, one set of tools, LLM decides next step. LangGraph is the engine beneath it: you draw the graph yourself, so you can add an approval node before a write, a loop limit, a checkpoint to resume a crashed run, or route between multiple agents. Same ecosystem, different level of control.
+
+One caution: the exact `create_agent` naming is from LangChain 1.0 — verify the current signature on the docs before an interview, since the API moved fast in 2025. If the interviewer is on an older codebase they may still say `AgentExecutor`; just acknowledge both.
